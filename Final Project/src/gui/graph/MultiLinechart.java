@@ -8,7 +8,7 @@ import gui.primitive.GuiObject;
 import gui.primitive.Parent;
 import processing.core.PApplet;
 import processing.core.PFont;
-
+//Testing RIP chart :P
 public class MultiLinechart extends Graphs 
 {
 	private Key chartKey;
