@@ -278,7 +278,7 @@ public class GraphScreen extends Screen
             priceData = queries.priceDiscreteData(listOfIDs, Integer.parseInt(info.get("Minimum Price").replaceFirst(".", "")),
                     Integer.parseInt(info.get("Maximum Price").replaceFirst(".", "")), 30);
         priceHistograph = new Histograph(container, CHART_POSITION, CHART_SIZE,
-                priceData.getData(), 120, priceData.getLabels(), priceData.getTitle(), 0xcF317873, "Price (�)", "Number of Sales");
+                priceData.getData(), 120, priceData.getLabels(), priceData.getTitle(), 0xcF317873, "Price (£)", "Number of Sales");
         priceHistograph.setBackgroundColor(0x3FFFFFFF);
         priceHistograph.setVisible(false);
         priceHistograph.setTextColor(0xFFFFFFFF);
@@ -341,7 +341,7 @@ public class GraphScreen extends Screen
         if (monthAverageData == null)
             monthAverageData = queries.monthAverageDiscretData(listOfIDs);
         monthAverageLineChart = new LineChart(container, CHART_POSITION, CHART_SIZE,
-                monthAverageData.getData(), 120, monthAverageData.getLabels(), monthAverageData.getTitle(), "Month", "Average Price(�)");
+                monthAverageData.getData(), 120, monthAverageData.getLabels(), monthAverageData.getTitle(), "Month", "Average Price(£)");
         monthAverageLineChart.setBackgroundColor(0x3FFFFFFF);
         monthAverageLineChart.setVisible(false);
         monthAverageLineChart.setTextColor(0xFFFFFFFF);
@@ -361,7 +361,7 @@ public class GraphScreen extends Screen
         if (dateAverageData == null)
             dateAverageData = queries.dateAverageDiscreteData(listOfIDs, 10);
         dateAverageLineChart = new LineChart(container, CHART_POSITION, CHART_SIZE,
-                dateAverageData.getData(), 120, dateAverageData.getLabels(), dateAverageData.getTitle(), "Date", "Average Price(�)");
+                dateAverageData.getData(), 120, dateAverageData.getLabels(), dateAverageData.getTitle(), "Date", "Average Price(£)");
         dateAverageLineChart.setBackgroundColor(0x3FFFFFFF);
         dateAverageLineChart.setVisible(false);
         dateAverageLineChart.setTextColor(0xFFFFFFFF);

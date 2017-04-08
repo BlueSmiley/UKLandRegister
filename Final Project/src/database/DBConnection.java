@@ -48,7 +48,7 @@ public class DBConnection {
 	public void loadDB () {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			connection = DriverManager.getConnection("jdbc:sqlite:land.db");
+			connection = DriverManager.getConnection("jdbc:sqlite::resource:land.db");
 			statement = connection.createStatement();
 
 			DatabaseMetaData dbm = connection.getMetaData();

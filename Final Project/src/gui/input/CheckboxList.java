@@ -18,7 +18,7 @@ public class CheckboxList extends Container {
 		public CheckBox box;
 		public TextLabel label;
 		public Container boxContainer;
-		
+
 		public Option (String text, Container container, Container boxContainer, CheckBox box, TextLabel label) {
 			this.text = text;
 			this.container = container;
@@ -27,9 +27,9 @@ public class CheckboxList extends Container {
 			this.label = label;
 		}
 	}
-	
+
 	protected ArrayList<Option> options = new ArrayList<>();
-	
+
 	public CheckboxList (Parent parent, UDim2 position, UDim2 size) {
 		super(parent, position, size);
 		addOption("All");
@@ -41,11 +41,11 @@ public class CheckboxList extends Container {
 			}
 		});
 	}
-	
+
 	public CheckboxList (Parent parent, UDim2 size) {
 		this(parent, new UDim2 (), size);
 	}
-	
+
 	public void addOption (String ... options) {
 		for (String option: options) {
 			Container optionContainer = new Container (this, new UDim2 (1, 0, 0, 0));
@@ -65,12 +65,12 @@ public class CheckboxList extends Container {
 			label.setTextSize(applet.NORMAL_TEXT_SIZE);
 			label.setTextColor(applet.TEXT_COLOR);
 			label.setHorizontalAlign(applet.LEFT);
-			
+
 			this.options.add(new Option(option, optionContainer, boxContainer, box, label));
 		}
 		updateOptionsHolder();
 	}
-	
+
 	public void updateOptionsHolder () {
 		float size = 1 / (float) (this.options.size());
 		for (int i = 0; i < options.size(); i++) {
@@ -86,10 +86,10 @@ public class CheckboxList extends Container {
 			option.label.setPosition(new UDim2 (0, squareSize + 5, 0, 0));
 		}
 	}
-	
+
 	public HashMap<String, Boolean> getAllInputs () {
 		HashMap<String, Boolean> inputs = new HashMap<> ();
-		
+
 		for (Option option: options) {
 			if (!(option.label.getText().contains("All"))) {
 				String optionText = option.label.getText();
@@ -97,7 +97,7 @@ public class CheckboxList extends Container {
 				inputs.put(optionText, value);
 			}
 		}
-		
+
 		return inputs;
 	}
 }

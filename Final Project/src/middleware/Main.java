@@ -28,7 +28,7 @@ public class Main extends PApplet {
 	public final int TRANSPARENT	  = 0x00ffffff;
 	public final int POPUP_COLOR	  = 0xe0808080;
 	
-	public static final int MIN = 50000;
+	public static final int MIN = 0;
 	public static final int MAX = 2500000;
 	
 	protected Map map;
@@ -137,7 +137,7 @@ public class Main extends PApplet {
 			} else
 				currentSelection.addInput(countySelect.getOutput());
 		});
-		
+
 		posY += size + offset;
 		size = 0.1f;
 		Container priceSearchContainer = new Container (userQueryContainer, new UDim2 (0.1f, 0, posY, 0), new UDim2 (0.8f, 0, size, 0));
@@ -153,8 +153,10 @@ public class Main extends PApplet {
 		maxPriceLabel.setHorizontalAlign(RIGHT);
 		TextBox minPrice = new TextBox (priceSearchContainer, new UDim2 (0, 0, 0.66f, 0), new UDim2 (0.46785f, 0, 0.35f, 0), "\\d");
 		minPrice.setBackgroundColor(FOREGROUND_COLOR);
+		minPrice.setText(""+MIN);
 		TextBox maxPrice = new TextBox (priceSearchContainer, new UDim2 (0.53125f, 0, 0.66f, 0), new UDim2 (0.46785f, 0, 0.35f, 0), "\\d");
 		maxPrice.setBackgroundColor(FOREGROUND_COLOR);
+		maxPrice.setText(""+MAX);
 		new Container (priceSearchContainer, new UDim2 (0.48370f, 0, 0.75f, 0), new UDim2 (0.03170f, 0, 0.1f, 0));
 		minPrice.Output.connect(() -> {
 			if (!minPrice.getText().equals(""))
@@ -228,6 +230,7 @@ public class Main extends PApplet {
 					toFilterConditions.add(key);
 				}
 			}
+
 			filtered = queries.filterCondition(filtered, toFilterConditions.toArray(new String[toFilterConditions.size()]));
 			
 			filtered = queries.filterByCounty(filtered, currentSelection.getAllInputs());
