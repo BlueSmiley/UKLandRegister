@@ -14,13 +14,11 @@ public class PieChart extends Graphs
 	private int[] pieColors;
 	private float[] arcValues;
 	private float diameter;
-	private float labelWidth;
-	private float labelHeight;
+	private float labelWidth, labelHeight;
 	private int fontSize;
 	private String[] labels;
 	private boolean tweening;
-	private boolean completedDraw;
-	private boolean startedDraw;
+	private boolean completedDraw, startedDraw;
 	private int textColor;
 	private int labelBackgroundColor;
 	private boolean[] completedArc;
@@ -114,7 +112,7 @@ public class PieChart extends Graphs
 	public void displayPie()
 	{
 		float offset = 0;
-		if(startedDraw || ! tweening || completedDraw)
+		if(startedDraw || !tweening || completedDraw)
 		{
 			startedDraw = true;
 			for(int i = 0; i < values.length; i++)
@@ -128,14 +126,16 @@ public class PieChart extends Graphs
 					maxLastArc = (values[i - 1] / sum) * PApplet.TWO_PI;
 				}
 
-				if(i == 0) completedArc[i] = arcValues[i] == maxThisArc;
-				else completedArc[i] = completedArc[i - 1] && arcValues[i] == maxThisArc;
+				if(i == 0) // only take into account whether arc is max
+					completedArc[i] = arcValues[i] == maxThisArc;
+				else 	// take into account whether last arc is complete too
+					completedArc[i] = completedArc[i - 1] && arcValues[i] == maxThisArc;
 
-				if(i == 0)
+				if(i == 0) // always draw first arc
 				{
 					applet.arc(centerX, centerY, diameter, diameter, offset, offset + currentArc(i), PApplet.PIE);
 				}
-				else if(arcValues[i - 1] == maxLastArc && completedArc[i - 1])
+				else if(arcValues[i - 1] == maxLastArc && completedArc[i - 1]) //draw arc once last one has completed
 				{
 					applet.arc(centerX, centerY, diameter, diameter, offset, offset + currentArc(i), PApplet.PIE);
 				}
@@ -170,8 +170,10 @@ public class PieChart extends Graphs
 	{
 		float maxArc = (values[i] / sum) * PApplet.TWO_PI;
 
-		if(arcValues[i] < maxArc) arcValues[i] += 1f / PApplet.PI;
-		if(arcValues[i] > maxArc) arcValues[i] = maxArc;
+		if(arcValues[i] < maxArc) 
+			arcValues[i] += 1f / PApplet.PI;
+		if(arcValues[i] > maxArc) 
+			arcValues[i] = maxArc;
 		return arcValues[i];
 	}
 
